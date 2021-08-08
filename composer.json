@@ -3,7 +3,8 @@
     "description": "Abstand vor und hinter Artikeln und Inhaltselementen.",
     "keywords": [
         "margin",
-        "padding"
+        "padding",
+        "Abstände"
     ],
     "type": "contao-bundle",
     "license": "GPL-3.0-or-later",
