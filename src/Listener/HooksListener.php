@@ -12,7 +12,6 @@ class HooksListener
 {
     public function __invoke(Template $template)
     {
-        echo '<div>' . $template->type . '</div>';
         if (TL_MODE == 'FE' && $template->type == 'article') {
             if ( deserialize($template->space_desktop)[0] != NULL ) { $template->style .= '--space_top_desktop: ' . deserialize($template->space_desktop)[0] . ';'; }
             if ( deserialize($template->space_desktop)[1] != NULL ) { $template->style .= '--space_bottom_desktop: ' . deserialize($template->space_desktop)[1] . ';'; }
