@@ -25,7 +25,7 @@ class HooksListener
                 $template->style .= '--space_top_mobile: ' . deserialize($template->space_mobile)[0] . ';'; 
             }
             if ( deserialize($template->space_mobile)[1] != NULL ) { 
-                $template->class .= ' space_bottom_mobile;'; 
+                $template->class .= ' space_bottom_mobile'; 
                 $template->style .= '--space_bottom_mobile: ' . deserialize($template->space_mobile)[1] . ';'; 
             }
         }
