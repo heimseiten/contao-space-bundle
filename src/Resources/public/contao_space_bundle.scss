@@ -1,7 +1,7 @@
 body .mod_article {
     @media(min-width:1024px){
-        &.space_top_desktop {    padding-top:    var(--article_padding_top_desktop,    var(--article_space_top)); }
-        &.space_bottom_desktop { padding-bottom: var(--article_padding_bottom_desktop, var(--article_space_bottom)); }
+        &.space_top_desktop {    padding-top:    var(--space_top_desktop,    var(--article_space_top)); }
+        &.space_bottom_desktop { padding-bottom: var(--space_bottom_desktop, var(--article_space_bottom)); }
     }
     @media(max-width:1023px){ 
         &.space_top_mobile {    padding-top:    var(--space_top_mobile,    var(--article_space_top)); }
