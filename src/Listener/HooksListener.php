@@ -12,13 +12,21 @@ class HooksListener
     public function __invoke(Template $template)
     {
         if (TL_MODE == 'FE' && $template->type == 'article') {
-            if ( deserialize($template->space_desktop)[0] != NULL ) { 
-                $template->class .= ' space_top_desktop'; 
-                $template->style .= '--space_top_desktop: ' . deserialize($template->space_desktop)[0] . ';'; 
+            if ( deserialize($template->space)[0] != NULL ) { 
+                $template->class .= ' space_top';
+                if (is_numeric(deserialize($template->space)[0])){
+                    $template->style .= 'margin-top: ' . deserialize($template->space)[0] . 'px;'; 
+                } else {
+                    $template->style .= '--space_top: ' . deserialize($template->space)[0] . ';'; 
+                }
             }
-            if ( deserialize($template->space_desktop)[1] != NULL ) { 
-                $template->class .= ' space_bottom_desktop'; 
-                $template->style .= '--space_bottom_desktop: ' . deserialize($template->space_desktop)[1] . ';'; 
+            if ( deserialize($template->space)[1] != NULL ) { 
+                $template->class .= ' space_bottom';
+                if (is_numeric(deserialize($template->space)[1])){
+                    $template->style .= 'margin-bottom: ' . deserialize($template->space)[1] . 'px;'; 
+                } else {
+                    $template->style .= '--space_bottom: ' . deserialize($template->space)[1] . ';'; 
+                }
             }
             if ( deserialize($template->space_mobile)[0] != NULL ) { 
                 $template->class .= ' space_top_mobile'; 
@@ -41,13 +49,21 @@ class HooksListener
                 $template->type == 'youtube' ||
                 $template->type == 'player'
             ) {
-            if ( deserialize($template->space_desktop)[0] != NULL ) { 
-                $template->class .= ' space_top_desktop;'; 
-                $template->style .= '--space_top_desktop: ' . deserialize($template->space_desktop)[0] . ';'; 
+            if ( deserialize($template->space)[0] != NULL ) { 
+                $template->class .= ' space_top;'; 
+                if (is_numeric(deserialize($template->space)[0])){
+                    $template->style .= 'margin-top: ' . deserialize($template->space)[0] . 'px;'; 
+                } else {
+                    $template->style .= '--space_top: ' . deserialize($template->space)[0] . ';'; 
+                }
             }
-            if ( deserialize($template->space_desktop)[1] != NULL ) { 
-                $template->class .= ' space_bottom_desktop'; 
-                $template->style .= '--space_bottom_desktop: ' . deserialize($template->space_desktop)[1] . ';'; 
+            if ( deserialize($template->space)[1] != NULL ) { 
+                $template->class .= ' space_bottom'; 
+                if (is_numeric(deserialize($template->space)[1])){
+                    $template->style .= 'margin-bottom: ' . deserialize($template->space)[1] . 'px;'; 
+                } else {
+                    $template->style .= '--space_bottom: ' . deserialize($template->space)[1] . ';'; 
+                }
             }
             if ( deserialize($template->space_mobile)[0] != NULL ) { 
                 $template->class .= ' space_top_mobile'; 
