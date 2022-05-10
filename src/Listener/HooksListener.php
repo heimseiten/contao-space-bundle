@@ -47,6 +47,8 @@ class HooksListener
                 $template->type == 'accordionSingle' ||
                 $template->type == 'gallery' ||
                 $template->type == 'youtube' ||
+                $template->type == 'html' ||
+                $template->type == 'colsetStart' ||
                 $template->type == 'player'
             ) {
             if ( deserialize($template->space)[0] != NULL ) { 
