@@ -37,7 +37,6 @@ class HooksListener
                 $template->style .= '--space_bottom_mobile: ' . deserialize($template->space_mobile)[1] . ';'; 
             }
         }
-        if (TL_MODE == 'FE' && 
                 $template->type == 'text' || 
                 $template->type == 'image' ||
                 $template->type == 'headline' ||
@@ -75,6 +74,6 @@ class HooksListener
                 $template->class .= ' space_bottom_mobile'; 
                 $template->style .= '--space_bottom_mobile: ' . deserialize($template->space_mobile)[1] . ';'; 
             }
-        }
+        
     }
 }
