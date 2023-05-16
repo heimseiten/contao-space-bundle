@@ -37,19 +37,7 @@ class HooksListener
                 $template->style .= '--space_bottom_mobile: ' . deserialize($template->space_mobile)[1] . ';'; 
             }
         }
-                $template->type == 'text' || 
-                $template->type == 'image' ||
-                $template->type == 'headline' ||
-                $template->type == 'sliderStart' ||
-                $template->type == 'sliderStop' ||
-                $template->type == 'teaser_element' ||
-                $template->type == 'accordionSingle' ||
-                $template->type == 'gallery' ||
-                $template->type == 'youtube' ||
-                $template->type == 'html' ||
-                $template->type == 'colsetStart' ||
-                $template->type == 'player'
-            ) {
+               
             if ( deserialize($template->space)[0] != NULL ) { 
                 $template->class .= ' space_top;'; 
                 if (is_numeric(deserialize($template->space)[0])){
