@@ -11,7 +11,7 @@ class HooksListener
 {
     public function __invoke(Template $template)
     {
-        if (TL_MODE == 'FE' && $template->type == 'article') {
+        if ($template->type == 'article') {
             if ( deserialize($template->space)[0] != NULL ) { 
                 $template->class .= ' space_top';
                 if (is_numeric(deserialize($template->space)[0])){
