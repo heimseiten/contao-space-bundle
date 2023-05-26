@@ -2,6 +2,6 @@ services:
   Heimseiten\ContaoSpaceBundle\Listener\HooksListener:
     tags:
       - { name: contao.hook, hook: parseTemplate, method: __invoke, priority: 0 }
-  Heimseiten\ContaoSpaceBundle\Twig\AppExtension:
+  Heimseiten\ContaoSpaceBundle\Twig\Deserializer:
     tags:
       - { name: twig.extension }

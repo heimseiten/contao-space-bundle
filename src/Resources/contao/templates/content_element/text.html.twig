@@ -1,30 +1,10 @@
 {% extends "@Contao/content_element/text.html.twig" %}
-
-{#
-  ** Add changes to the base template here. **
-
-  Hint: Try adjusting blocks and attributes instead of
-  overwriting the whole template. This way your version
-  can remain compatible with future changes to the base
-  template as well as adjustments made by extensions.
-
-  Currently available blocks:
-    "figure_component", "picture_component", "image",
-    "sources", "source", "schema_org", "media",
-    "media_link", "caption", "caption_inner",
-    "content", "text_media", "text",
-    "text_attributes", "headline_component",
-    "headline_attributes", "headline_inner",
-    "wrapper", "wrapper_tag", "attributes", "inner"
-
-  Example:
-    {% block figure_component %}
-       {{ parent() }}
-       My additional content for 'figure_component'…
-    {% endblock %}
-#}
-
-    
-    {% block wrapper_tag %}{{ parent() }}
-       style="margin-top: {{ data.space|space_top }}px; margin-bottom: {{ data.space|space_bottom }}px;"
-    {% endblock %}
+{% block wrapper_tag %}{{ parent() }} style="margin-top: {{ data.space|deserialize_1 }}px; margin-bottom: {{ data.space|deserialize_2 }}px;"{% endblock %}
+{% block text_media %}
+  {% if image %}
+      {% set figure_attributes = attrs()
+          .addStyle("margin-top: #{data.imagemargin|deserialize_top}px; margin-right: #{data.imagemargin|deserialize_right}px; margin-bottom: #{data.imagemargin|deserialize_bottom}px; margin-left: #{data.imagemargin|deserialize_left}px; ")
+      %}
+      {% with {figure: image, figure_attributes: figure_attributes} %}{{ block('figure_component') }}{% endwith %}
+  {% endif %}
+{% endblock %}
