@@ -20,6 +20,15 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['space_mobile'] = [
     'sql'       => "text NULL"
 ];
 
+$GLOBALS['TL_DCA']['tl_content']['fields']['imagemargin'] = [
+    'label'     => &$GLOBALS['TL_LANG']['tl_content']['imagemargin'],
+    'exclude'   => true,
+    'inputType' => 'trbl',
+    'options'   => array('px', '%', 'em', 'rem'),
+    'eval'      => array('includeBlankOption'=>true, 'readonly'=>true, 'tl_class'=>'w50'),
+    'sql'       => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
+];
+
 $GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = function()
 {
     foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $key => $palette)
@@ -29,6 +38,7 @@ $GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = function()
             PaletteManipulator::create()
             ->addField('space', 'expert_legend', PaletteManipulator::POSITION_APPEND)
             ->addField('space_mobile', 'expert_legend', PaletteManipulator::POSITION_APPEND)
+            ->addField('imagemargin', 'expert_legend', PaletteManipulator::POSITION_APPEND)
             ->applyToPalette($key, 'tl_content');
         }
     }
