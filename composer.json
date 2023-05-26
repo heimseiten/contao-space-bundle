@@ -1,6 +1,6 @@
 {
     "name": "heimseiten/contao-space-bundle",
-    "description": "Es können die Abständ von alten Contao Versionen zu Contao 5 übernommen werden. Vor und hinter Artikeln und Inhaltselementen und die Bildabstände.",
+    "description": "Es können die Abstände von alten Contao Versionen zu Contao 5 übernommen werden. Vor und hinter Artikeln und Inhaltselementen und die Bildabstände.",
     "keywords": [
         "margin",
         "padding",
