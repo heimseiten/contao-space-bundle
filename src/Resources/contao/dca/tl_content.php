@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['imagemargin'] = [
     'exclude'   => true,
     'inputType' => 'trbl',
     'options'   => array('px', '%', 'em', 'rem'),
-    'eval'      => array('includeBlankOption'=>true, 'readonly'=>true, 'tl_class'=>'w50'),
+    'eval'      => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
     'sql'       => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
 ];
 
