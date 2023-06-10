@@ -1,10 +1,33 @@
 {% extends "@Contao/content_element/text.html.twig" %}
-{% block wrapper_tag %}{{ parent() }} style="margin-top: {{ data.space|deserialize_1 }}px; margin-bottom: {{ data.space|deserialize_2 }}px;"{% endblock %}
+{% block wrapper_tag %}{{ parent() }} {% if data.space|deserialize_1 or data.space|deserialize_2 %} style="{% if data.space|deserialize_1 %}margin-top: {{ data.space|deserialize_1 }}px;{% endif %}{% if data.space|deserialize_2 %}margin-bottom: {{ data.space|deserialize_2 }}px;{% endif %}"{% endif %}{% endblock %}
 {% block text_media %}
   {% if image %}
+
+    {% if data.imagemargin|deserialize_top %}
       {% set figure_attributes = attrs()
-          .addStyle("margin-top: #{data.imagemargin|deserialize_top}px; margin-right: #{data.imagemargin|deserialize_right}px; margin-bottom: #{data.imagemargin|deserialize_bottom}px; margin-left: #{data.imagemargin|deserialize_left}px; ")
+          .addStyle("margin-top: #{data.imagemargin|deserialize_top}px; ")
       %}
-      {% with {figure: image, figure_attributes: figure_attributes} %}{{ block('figure_component') }}{% endwith %}
+    {% endif %}
+
+    {% if data.imagemargin|deserialize_right %}    
+      {% set figure_attributes = attrs()
+        .addStyle("margin-right: #{data.imagemargin|deserialize_right}px; ")
+      %}
+    {% endif %}
+    
+    {% if data.imagemargin|deserialize_bottom %}    
+      {% set figure_attributes = attrs()
+        .addStyle("margin-bottom: #{data.imagemargin|deserialize_bottom}px; ")
+      %}
+    {% endif %}
+  
+    {% if data.imagemargin|deserialize_left %}    
+      {% set figure_attributes = attrs()
+        .addStyle("margin-left: #{data.imagemargin|deserialize_left}px; ")
+      %}
+    {% endif %}
+    
+    {% with {figure: image, figure_attributes: figure_attributes} %}{{ block('figure_component') }}{% endwith %}
+
   {% endif %}
 {% endblock %}
