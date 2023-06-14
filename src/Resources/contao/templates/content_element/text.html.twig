@@ -3,29 +3,30 @@
 {% block text_media %}
   {% if image %}
 
+    {% set imagemargin_top = "" %}
+    {% set imagemargin_right = "" %}
+    {% set imagemargin_bottom = "" %}
+    {% set imagemargin_left = "" %}
+    
     {% if data.imagemargin|deserialize_top %}
-      {% set figure_attributes = attrs()
-          .addStyle("margin-top: #{data.imagemargin|deserialize_top}px; ")
-      %}
+      {% set imagemargin_top = "margin-top: #{data.imagemargin|deserialize_top}px; " %}
     {% endif %}
 
     {% if data.imagemargin|deserialize_right %}    
-      {% set figure_attributes = attrs()
-        .addStyle("margin-right: #{data.imagemargin|deserialize_right}px; ")
-      %}
+      {% set imagemargin_right = "margin-right: #{data.imagemargin|deserialize_right}px; " %}
     {% endif %}
     
     {% if data.imagemargin|deserialize_bottom %}    
-      {% set figure_attributes = attrs()
-        .addStyle("margin-bottom: #{data.imagemargin|deserialize_bottom}px; ")
-      %}
+      {% set imagemargin_bottom = "margin-bottom: #{data.imagemargin|deserialize_bottom}px; " %}
     {% endif %}
   
     {% if data.imagemargin|deserialize_left %}    
-      {% set figure_attributes = attrs()
-        .addStyle("margin-left: #{data.imagemargin|deserialize_left}px; ")
-      %}
+      {% set imagemargin_left = "margin-left: #{data.imagemargin|deserialize_left}px; " %}
     {% endif %}
+
+    {% set figure_attributes = attrs()
+        .addStyle(imagemargin_top ~ imagemargin_right ~ imagemargin_bottom ~ imagemargin_left)
+    %}
     
     {% with {figure: image, figure_attributes: figure_attributes} %}{{ block('figure_component') }}{% endwith %}
 
