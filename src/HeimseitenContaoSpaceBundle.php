@@ -5,19 +5,13 @@ declare(strict_types=1);
 namespace Heimseiten\ContaoSpaceBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-/**
- * Class HeimseitenContaoSpaceBundle
- */
-class HeimseitenContaoSpaceBundle extends Bundle
+class HeimseitenContaoSpaceBundle extends AbstractBundle
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function build(ContainerBuilder $container): void
-	{
-		parent::build($container);
-		
-	}
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        $container->import('../config/services.yml');
+    }
 }
