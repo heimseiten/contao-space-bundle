@@ -22,37 +22,13 @@ class Deserializer extends AbstractExtension
             new TwigFilter('deserialize_left', [$this, 'deserializeLeft']),
         ];
     }
-    public function deserialize1(string $value): string { return StringUtil::deserialize($value)[0]; }
-    public function deserialize2(string $value): string { return StringUtil::deserialize($value)[1]; }
-    public function deserialize3(string $value): string { return StringUtil::deserialize($value)[2]; }
-    public function deserialize4(string $value): string { return StringUtil::deserialize($value)[3]; }
-    
-    public function deserializeTop(string $value): string { 
-        if (StringUtil::deserialize($value, true) ?? '') {
-            return StringUtil::deserialize($value, true)['top'];
-        } else {
-            return '';
-        }
-    }
-    public function deserializeRight(string $value): string { 
-        if (StringUtil::deserialize($value, true) ?? '') {
-            return StringUtil::deserialize($value, true)['right'];
-        } else {
-            return '';
-        }
-    }
-    public function deserializeBottom(string $value): string { 
-        if (StringUtil::deserialize($value, true) ?? '') {
-            return StringUtil::deserialize($value, true)['bottom'];
-        } else {
-            return '';
-        }
-    }
-    public function deserializeLeft(string $value): string { 
-        if (StringUtil::deserialize($value, true) ?? '') {
-            return StringUtil::deserialize($value, true)['left'];
-        } else {
-            return '';
-        }
-    }
+    public function deserialize1(?string $value): string { return (string) (StringUtil::deserialize($value, true)[0] ?? ''); }
+    public function deserialize2(?string $value): string { return (string) (StringUtil::deserialize($value, true)[1] ?? ''); }
+    public function deserialize3(?string $value): string { return (string) (StringUtil::deserialize($value, true)[2] ?? ''); }
+    public function deserialize4(?string $value): string { return (string) (StringUtil::deserialize($value, true)[3] ?? ''); }
+
+    public function deserializeTop(?string $value): string { return (string) (StringUtil::deserialize($value, true)['top'] ?? ''); }
+    public function deserializeRight(?string $value): string { return (string) (StringUtil::deserialize($value, true)['right'] ?? ''); }
+    public function deserializeBottom(?string $value): string { return (string) (StringUtil::deserialize($value, true)['bottom'] ?? ''); }
+    public function deserializeLeft(?string $value): string { return (string) (StringUtil::deserialize($value, true)['left'] ?? ''); }
 }
