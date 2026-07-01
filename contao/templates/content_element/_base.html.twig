@@ -1,0 +1,22 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+
+{#
+  Abstände (space / space_mobile) als CSS-Variablen am Wrapper JEDES Content-Elements
+  ausgeben – im selben Format wie die frühere custom-contao-Lösung (block_searchable),
+  damit bestehendes Theme-CSS (z. B. margin-top: var(--margin-top-mobile)) greift.
+  space[0/1] = Desktop oben/unten, space_mobile[0/1] = mobil oben/unten.
+  Reine Zahlen bekommen "px", Werte mit Einheit (z. B. 10vh) bleiben unverändert (Filter css_unit).
+#}
+{% block attributes %}
+{%- set d1 = data.space|deserialize_1 -%}
+{%- set d2 = data.space|deserialize_2 -%}
+{%- set m1 = data.space_mobile|deserialize_1 -%}
+{%- set m2 = data.space_mobile|deserialize_2 -%}
+{%- set spacing =
+     (d1 ? "--margin-top: #{d1|css_unit};" : "")
+   ~ (d2 ? "--margin-bottom: #{d2|css_unit};" : "")
+   ~ (m1 ? "--margin-top-mobile: #{m1|css_unit};" : "")
+   ~ (m2 ? "--margin-bottom-mobile: #{m2|css_unit};" : "")
+-%}
+{{- spacing ? attributes.addStyle(spacing) : attributes -}}
+{% endblock %}

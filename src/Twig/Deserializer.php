@@ -20,7 +20,20 @@ class Deserializer extends AbstractExtension
             new TwigFilter('deserialize_right', [$this, 'deserializeRight']),
             new TwigFilter('deserialize_bottom', [$this, 'deserializeBottom']),
             new TwigFilter('deserialize_left', [$this, 'deserializeLeft']),
+            new TwigFilter('css_unit', [$this, 'cssUnit']),
         ];
+    }
+
+    // Reine Zahl -> "<n>px"; Wert mit Einheit (z. B. 10vh) unverändert; leer -> "".
+    public function cssUnit(?string $value): string
+    {
+        $value = (string) $value;
+
+        if ($value === '') {
+            return '';
+        }
+
+        return is_numeric($value) ? $value . 'px' : $value;
     }
     public function deserialize1(?string $value): string { return (string) (StringUtil::deserialize($value, true)[0] ?? ''); }
     public function deserialize2(?string $value): string { return (string) (StringUtil::deserialize($value, true)[1] ?? ''); }

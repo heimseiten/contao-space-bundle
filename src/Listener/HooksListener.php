@@ -14,34 +14,24 @@ class HooksListener
             return;
         }
 
-        // deserialize(..., true) always yields an array, so empty/unset values no longer
-        // trigger "array offset on null" / "uninitialized string offset" warnings.
+        // Abstände als CSS-Variablen im selben Format wie die Content-Elemente
+        // (siehe content_element/_base.html.twig): --margin-*(-mobile). Reine Zahlen
+        // bekommen "px", Werte mit Einheit (z. B. 10vh) werden unverändert übernommen.
+        // deserialize(..., true) liefert immer ein Array -> keine Offset-Warnungen.
         $space = StringUtil::deserialize($template->space, true);
         $spaceMobile = StringUtil::deserialize($template->space_mobile, true);
 
-        if (($space[0] ?? '') !== '') {
-            $template->class .= ' space_top';
-            if (is_numeric($space[0])) {
-                $template->style .= 'margin-top: ' . $space[0] . 'px;';
-            } else {
-                $template->style .= '--space_top: ' . $space[0] . ';';
+        $map = [
+            '--margin-top' => $space[0] ?? '',
+            '--margin-bottom' => $space[1] ?? '',
+            '--margin-top-mobile' => $spaceMobile[0] ?? '',
+            '--margin-bottom-mobile' => $spaceMobile[1] ?? '',
+        ];
+
+        foreach ($map as $prop => $value) {
+            if ((string) $value !== '') {
+                $template->style .= $prop . ': ' . $value . (is_numeric($value) ? 'px' : '') . ';';
             }
-        }
-        if (($space[1] ?? '') !== '') {
-            $template->class .= ' space_bottom';
-            if (is_numeric($space[1])) {
-                $template->style .= 'margin-bottom: ' . $space[1] . 'px;';
-            } else {
-                $template->style .= '--space_bottom: ' . $space[1] . ';';
-            }
-        }
-        if (($spaceMobile[0] ?? '') !== '') {
-            $template->class .= ' space_top_mobile';
-            $template->style .= '--space_top_mobile: ' . $spaceMobile[0] . ';';
-        }
-        if (($spaceMobile[1] ?? '') !== '') {
-            $template->class .= ' space_bottom_mobile';
-            $template->style .= '--space_bottom_mobile: ' . $spaceMobile[1] . ';';
         }
     }
 }

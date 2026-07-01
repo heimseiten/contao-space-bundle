@@ -1,25 +1,29 @@
 {% extends "@Contao/content_element/image.html.twig" %}
 
+{#
+  space / space_mobile werden zentral in content_element/_base.html.twig ausgegeben.
+  Hier nur die Bild-Ränder (imagemargin) am <figure>.
+#}
 {% block figure_component %}
 
   {% set imagemargin_top = "" %}
   {% set imagemargin_right = "" %}
   {% set imagemargin_bottom = "" %}
   {% set imagemargin_left = "" %}
-  
+
   {% if data.imagemargin|deserialize_top %}
     {% set imagemargin_top = "margin-top: #{data.imagemargin|deserialize_top}px; " %}
   {% endif %}
 
-  {% if data.imagemargin|deserialize_right %}    
+  {% if data.imagemargin|deserialize_right %}
     {% set imagemargin_right = "margin-right: #{data.imagemargin|deserialize_right}px; " %}
   {% endif %}
-  
-  {% if data.imagemargin|deserialize_bottom %}    
+
+  {% if data.imagemargin|deserialize_bottom %}
     {% set imagemargin_bottom = "margin-bottom: #{data.imagemargin|deserialize_bottom}px; " %}
   {% endif %}
 
-  {% if data.imagemargin|deserialize_left %}    
+  {% if data.imagemargin|deserialize_left %}
     {% set imagemargin_left = "margin-left: #{data.imagemargin|deserialize_left}px; " %}
   {% endif %}
 
@@ -29,7 +33,7 @@
         .addStyle(imagemargin_top ~ imagemargin_right ~ imagemargin_bottom ~ imagemargin_left) %}
     {% endif %}
   {% endif %}
-  
+
   {{ parent() }}
 
 {% endblock %}
